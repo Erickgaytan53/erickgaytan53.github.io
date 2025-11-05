@@ -1,0 +1,56 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+ 
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Build outputs
+dist/
+build/
+*.map
+ 
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+ 
+ 
+# Local development
+.localenv
+local.properties
+
+ 
+# PHP (if you add any server-side functionality later)
+/vendor/
+composer.lock
+.env.php
+
+  

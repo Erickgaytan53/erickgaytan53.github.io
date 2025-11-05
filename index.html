@@ -5,494 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erick Gaytan - Desarrollador Full Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary-color: #5b8c7e;
-            --dark-text: #1a1a1a;
-            --light-bg: #f5f5f5;
-            --white: #ffffff;
-            --gray-text: #666;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-text);
-            background-color: var(--light-bg);
-        }
-        
-        /* Header/Navigation */
-        header {
-            background: var(--white);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-text);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--dark-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        .hire-btn {
-            background: var(--dark-text);
-            color: var(--white);
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .hire-btn:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-        }
-        
-        /* Hero Section */
-        .hero {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: start;
-        }
-        
-        /* Profile Card */
-        .profile-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            border: 8px dashed #e0e0e0;
-            padding: 10px;
-            position: relative;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .profile-card h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .profile-card p {
-            color: var(--gray-text);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            background: var(--light-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-text);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.2rem;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            transform: translateY(-3px);
-        }
-        
-        /* Hero Content */
-        .hero-content {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 4rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        
-        .greeting {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .greeting::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: inline-block;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            color: var(--dark-text);
-        }
-        
-        .hero-content h1 .highlight {
-            color: var(--dark-text);
-            font-weight: 700;
-        }
-        
-        .hero-content h1 .outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--dark-text);
-            font-weight: 700;
-        }
-        
-        .availability {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            color: var(--gray-text);
-        }
-        
-        .availability::before {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        
-        .download-cv {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-        }
-        
-        .download-cv:hover {
-            background: var(--dark-text);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        /* Services Section */
-        .services {
-            max-width: 1400px;
-            margin: 6rem auto;
-            padding: 0 2rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--dark-text);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--light-bg);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .service-card p {
-            color: var(--gray-text);
-            line-height: 1.8;
-        }
-        
-        /* Works Section */
-        .works {
-            max-width: 1400px;
-            margin: 6rem auto;
-            padding: 0 2rem;
-        }
-        
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .work-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-        
-        .work-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        
-        .work-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
-        }
-        
-        .work-content {
-            padding: 2rem;
-        }
-        
-        .work-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .work-content p {
-            color: var(--gray-text);
-            margin-bottom: 1rem;
-        }
-        
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .tech-tag {
-            background: var(--light-bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: var(--dark-text);
-        }
-        
-        /* Contact Section */
-        .contact {
-            max-width: 1400px;
-            margin: 6rem auto;
-            padding: 4rem 2rem;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-        
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-        }
-        
-        .contact p {
-            color: var(--gray-text);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .contact-link {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s;
-        }
-        
-        .contact-link:hover {
-            background: var(--dark-text);
-            transform: translateY(-2px);
-        }
-        
-        /* Footer */
-        footer {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 2rem;
-            text-align: center;
-            color: var(--gray-text);
-        }
-        
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-content {
-                padding: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">Erick Gaytan</div>
+            <div class="logo">Portafolio</div>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#works">Works</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">Acerca de</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#works">Trabajo</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
             <a href="#contact" class="hire-btn">
-                Hire Me <i class="fas fa-arrow-right"></i>
+                Contactame <i class="fas fa-arrow-right"></i>
             </a>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="about">
         <!-- Profile Card -->
         <div class="profile-card">
             <div class="profile-image">
-                <img src="https://via.placeholder.com/250" alt="Erick Gaytan">
+                <img src="assets/images/avatar.jpg" alt="Erick Gaytan">
             </div>
-            <h2>Erick Gaytan</h2>
-            <p>Desarrollador Full Stack especializado en PHP & TypeScript</p>
+            <h2>Erick Daniel Gaona</h2>
+            <p>Desarrollador Full Stack especializado en PHP & Vue.js</p>
             <div class="social-links">
                 <a href="https://github.com/Erickgaytan53" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/tu-perfil" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/tu-perfil" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com/in/erickgaytan53" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 <a href="mailto:tu-email@ejemplo.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
 
         <!-- Hero Content -->
         <div class="hero-content">
-            <div class="greeting">Hello There!</div>
-            <h1>
-                I'M <span class="outline">ERICK GAYTAN</span>, <span class="highlight">UN DESARROLLADOR FULL STACK</span> <span class="outline">CREANDO SOLUCIONES</span> <span class="highlight">CON CÓDIGO LIMPIO Y EFICIENTE.</span>
-            </h1>
-            <div class="availability">Disponible para Freelancing</div>
-            <a href="#" class="download-cv">
-                Download CV <i class="fas fa-download"></i>
-            </a>
+            <!-- <h1>
+                DESARROLLADOR <span class="outline">ESPECIALIZADO</span>, <span class="highlight">CON 8 AÑOS DE EXPERIENCIA</span> <span class="outline">CREANDO SOLUCIONES</span> <span class="highlight">CON CÓDIGO LIMPIO Y EFICIENTE.</span>
+            </h1> -->
+            
+            <div class="item-content">
+                
+                <h3>Perfil: </h3>
+                <br>
+                <p>Ingeniero de software especializado en desarrollo backend con 6 años de experiencia. Experto en lenguajes como  PHP, Jquery, Javascript, Vue, además de servicios RESTful y arquitectura de microservicios.  Experiencia en bases de datos MySQL y PostgreSQL. Enfocado en optimización de consultas, escalabilidad y buenas prácticas de seguridad. Capaz de diseñar e implementar soluciones robustas para plataformas de alto tráfico.</p>
+                <br>
+                <div class="availability">Disponible para Freelancing</div>
+
+                <a href="#" class="download-cv" >
+                    Descargar CV <i class="fas fa-download"></i>
+                </a>
+
+            </div>
+            
+            <div class="item-content" style="margin-top: 50px;">
+                <!-- Technologies Section with Sliding Effect -->
+                <div class="technologies-slider">
+                    <div class="tech-wrapper">
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                            <span>PHP</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+                            <span>Laravel</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://www.yiiframework.com/image/design/logo/yii3_sign.svg" alt="Yii2">
+                            <span>Yii2</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                            <span>MySQL</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap">
+                            <span>Bootstrap</span>
+                        </div>
+                        
+                        <!-- Duplicar para efecto continuo -->
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                            <span>PHP</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+                            <span>Laravel</span>
+                        </div>
+                        <div class="tech-slide">
+                            <img src="https://www.yiiframework.com/image/design/logo/yii3_sign.svg" alt="Yii2">
+                            <span>Yii2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        
     </section>
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <h2 class="section-title">Services</h2>
+        <h2 class="section-title">Servicios</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">
@@ -509,14 +137,7 @@
                 <h3>Backend Development</h3>
                 <p>Creación de APIs robustas, sistemas de autenticación y bases de datos optimizadas con PHP, Laravel y MySQL.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Responsive Design</h3>
-                <p>Diseño y desarrollo de interfaces responsivas que se adaptan perfectamente a cualquier dispositivo.</p>
-            </div>
+             
             
             <div class="service-card">
                 <div class="service-icon">
@@ -533,62 +154,306 @@
                 <h3>Mantenimiento</h3>
                 <p>Soporte técnico continuo, actualizaciones y optimización de aplicaciones existentes.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3>Consultoría</h3>
-                <p>Asesoramiento técnico para la arquitectura y planificación de proyectos tecnológicos.</p>
-            </div>
         </div>
     </section>
 
     <!-- Works Section -->
     <section class="works" id="works">
-        <h2 class="section-title">Works</h2>
+        <div class="works-header">
+            <h2>Proyectos </h2>
+            <p class="section-description">
+                Explora algunos de mis proyectos de desarrollo, elaborados siguiendo buenas prácticas de programación y enfocados en la optimización de consultas, la escalabilidad y la seguridad. 
+            </p>
+            
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Todos</button>
+                <button class="filter-tab" data-filter="system-empresarial">Sistemas CRM - ERP</button>
+                <button class="filter-tab" data-filter="system-financial">Sistemas Financieros</button>
+                <button class="filter-tab" data-filter="api">Integraciones con API - REST</button>
+            </div>
+        </div>
+        
         <div class="works-grid">
-            <div class="work-card">
-                <div class="work-image">
-                    <i class="fas fa-credit-card"></i>
+        
+            <!-- Project 1 -->
+            <div class="work-card" data-category="system-empresarial">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/portafolio-crm-erp/gestion/1.png" alt="ERP Cresca Panel">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-crm-erp/gestion/2.png" alt="ERP Cresca Dashboard">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                        <span class="dot" onclick="currentSlide(this, 2)"></span>
+                    </div>
                 </div>
                 <div class="work-content">
-                    <h3>BDS Admin</h3>
-                    <p>Sistema completo para la administración de créditos con panel de control intuitivo.</p>
+                    <div class="work-category">Sistemas CRM - ERP</div>
+                    <h3>ERP Cresca </h3>
+                    <p>Plataforma empresarial para la administración de su información, usuarios y permisos.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">API SAT</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="work-card" data-category="system-empresarial">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/portafolio-crm-erp/arroyo/1.png" alt="Erp Arroyo">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-crm-erp/arroyo/2.png" alt="Erp Arroyo">
+                        </div>
+                        
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                        <span class="dot" onclick="currentSlide(this, 2)"></span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Sistemas CRM - ERP</div>
+                    <h3>ERP Pescados y Mariscos Arroyo</h3>
+                    <p>Plataforma de gestión empresarial para la industria pesquera y de mariscos diseñado a la operacion de procesos de negocio.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">Highcharts.js</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="work-card" data-category="system-empresarial">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/portafolio-crm-erp/autotrack/1.png" alt="AutoTrack">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-crm-erp/autotrack/2.png" alt="AutoTrack Cart">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-crm-erp/autotrack/3.png" alt="AutoTrack Admin">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-crm-erp/autotrack/4.png" alt="AutoTrack Admin">
+                        </div>
+
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                        <span class="dot" onclick="currentSlide(this, 2)"></span>
+                        <span class="dot" onclick="currentSlide(this, 3)"></span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Sistemas CRM - ERP</div>
+                    <h3>AutoTrack</h3>
+                    <p>Plataforma multiempresa diseñada para el sector automotriz, enfocada en el seguimiento y la gestión en tiempo real de órdenes de servicio de vehículos.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">PHP</span>
                         <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Stripe</span>
                         <span class="tech-tag">Bootstrap</span>
                     </div>
                 </div>
             </div>
             
-            <div class="work-card">
-                <div class="work-image">
-                    <i class="fas fa-building"></i>
+            <!-- Project 4 -->
+            <div class="work-card" data-category="system-financial">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/portafolio-financiero/ceami/1.png" alt="Sistema financieros Backend">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-financiero/ceami/2.png" alt="Sistema financieros Documentation">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-financiero/ceami/3.png" alt="Sistema financieros Monitoring">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                        <span class="dot" onclick="currentSlide(this, 2)"></span>
+                        <span class="dot" onclick="currentSlide(this, 3)"></span>
+                    </div>
                 </div>
                 <div class="work-content">
-                    <h3>BDS Panel</h3>
-                    <p>Plataforma empresarial para gestión de múltiples empresas y usuarios.</p>
+                    <div class="work-category">Sistema Financieros</div>
+                    <h3>Ceami & RGC</h3>
+                    <p>Desarrollo de un sistema financiero integral para la gestión de recursos y cobranza.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">Vue.js</span>
                     </div>
                 </div>
             </div>
             
-            <div class="work-card">
-                <div class="work-image">
-                    <i class="fas fa-chart-line"></i>
+            <!-- Project 5 -->
+            <div class="work-card" data-category="system-financial ">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/portafolio-financiero/bds/1.png" alt="Sistema financieros Backend">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-financiero/bds/2.png" alt="Sistema financieros Documentation">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/images/portafolio-financiero/bds/3.png" alt="Sistema financieros Monitoring">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                        <span class="dot" onclick="currentSlide(this, 2)"></span>
+                        <span class="dot" onclick="currentSlide(this, 3)"></span>
+                    </div>
                 </div>
                 <div class="work-content">
-                    <h3>Dashboard Analytics</h3>
-                    <p>Panel de análisis de datos en tiempo real con gráficos interactivos.</p>
+                    <div class="work-category">Sistema Financieros</div>
+                    <h3>Bluediamond services</h3>
+                    <p>Desarrollo de un sistema financiero integral para la gestión de recursos y cobranza.</p>
                     <div class="tech-stack">
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Vue.js</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Project 5 -->
+            <div class="work-card" data-category="api ">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/api/sat/1.jpg" alt="API SAT Backend">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Integracion con API - REST </div>
+                    <h3>API SAT</h3>
+                    <p>Integracion con API REST para la obtencion de datos fiscales y descarga masiva de CFDIs.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">cURL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="api ">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/api/stripe/1.jpg" alt="API SAT Backend">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Integracion con API - REST </div>
+                    <h3>API Stripe</h3>
+                    <p>Integracion con API REST para la gestion de pagos y suscripciones.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">cURL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card" data-category="api ">
+                <div class="work-image carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="assets/images/api/facturacion/1.jpg" alt="API SAT Backend">
+                        </div>
+                    </div>
+                    <button class="carousel-btn prev" onclick="changeSlide(this, -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next" onclick="changeSlide(this, 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(this, 1)"></span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <div class="work-category">Integracion con API - REST </div>
+                    <h3>API Facturama</h3>
+                    <p>Integracion con API REST para la generacion y validacion de CFDIs.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">Yii2</span>
+                        <span class="tech-tag">cURL</span>
                     </div>
                 </div>
             </div>
@@ -597,14 +462,14 @@
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <h2>Let's Work Together</h2>
+        <h2>Trabajemos juntos</h2>
         <p>¿Tienes un proyecto en mente? ¡Hablemos y hagámoslo realidad!</p>
         <div class="contact-links">
             <a href="mailto:tu-email@ejemplo.com" class="contact-link">
                 <i class="fas fa-envelope"></i> Send Email
             </a>
-            <a href="https://github.com/Erickgaytan53" target="_blank" class="contact-link">
-                <i class="fab fa-github"></i> GitHub
+            <a href="https://wa.me/522211244333" target="_blank" class="contact-link">
+                <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
             <a href="https://linkedin.com/in/tu-perfil" target="_blank" class="contact-link">
                 <i class="fab fa-linkedin-in"></i> LinkedIn
@@ -616,5 +481,117 @@
     <footer>
         <p>&copy; 2025 Erick Gaytan. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- JavaScript for filtering -->
+    <script>
+        // Carousel functionality mejorado
+        function changeSlide(button, direction) {
+            const carousel = button.closest('.carousel');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.dot');
+            
+            let currentIndex = 0;
+            slides.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+            
+            let newIndex = currentIndex + direction;
+            
+            // Lógica circular
+            if (newIndex >= slides.length) {
+                newIndex = 0;
+            } else if (newIndex < 0) {
+                newIndex = slides.length - 1;
+            }
+            
+            // Remover clases activas
+            slides[currentIndex].classList.remove('active');
+            dots[currentIndex].classList.remove('active');
+            
+            // Agregar clases activas
+            slides[newIndex].classList.add('active');
+            dots[newIndex].classList.add('active');
+        }
+        
+        function currentSlide(dot, slideNumber) {
+            const carousel = dot.closest('.carousel');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.dot');
+            const targetIndex = slideNumber - 1;
+            
+            // Remover todas las clases activas
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+            });
+            
+            // Agregar clase activa al slide y dot seleccionado
+            slides[targetIndex].classList.add('active');
+            dots[targetIndex].classList.add('active');
+        }
+
+        // Auto-slide cada 5 segundos (opcional)
+        function initAutoSlide() {
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(carousel => {
+                setInterval(() => {
+                    const nextButton = carousel.querySelector('.next');
+                    if (nextButton) {
+                        changeSlide(nextButton, 1);
+                    }
+                }, 5000);
+            });
+        }
+
+        // Inicializar auto-slide cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Comentar la siguiente línea si no quieres auto-slide
+            // initAutoSlide();
+        });
+
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const workCards = document.querySelectorAll('.work-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                filterTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                workCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.classList.remove('hidden');
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -549,7 +549,39 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Comentar la siguiente línea si no quieres auto-slide
             // initAutoSlide();
+            
+            // Inicializar skeleton loader para imágenes del carousel
+            initSkeletonLoader();
         });
+
+        // Skeleton Loader para imágenes del carousel
+        function initSkeletonLoader() {
+            const carouselImages = document.querySelectorAll('.carousel-slide img');
+            
+            carouselImages.forEach(img => {
+                const slide = img.closest('.carousel-slide');
+                
+                // Si la imagen ya está cargada
+                if (img.complete && img.naturalHeight !== 0) {
+                    slide.classList.add('image-loaded');
+                    img.classList.add('loaded');
+                } else {
+                    // Cuando la imagen se carga
+                    img.addEventListener('load', function() {
+                        slide.classList.add('image-loaded');
+                        img.classList.add('loaded');
+                    });
+                    
+                    // En caso de error al cargar la imagen
+                    img.addEventListener('error', function() {
+                        slide.classList.add('image-loaded');
+                        img.classList.add('loaded');
+                        // Opcional: mostrar imagen de placeholder
+                        console.warn('Error loading image:', img.src);
+                    });
+                }
+            });
+        }
 
         // Filter functionality
         const filterTabs = document.querySelectorAll('.filter-tab');

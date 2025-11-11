@@ -482,8 +482,15 @@
         <p>&copy; 2025 Erick Gaytan. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Notificaciones ntfy.sh -->
+    <script src="assets/js/notifications.js"></script>
+    
     <!-- JavaScript for filtering -->
     <script>
+        // Inicializar ntfy con tu topic personalizado
+        // IMPORTANTE: Cambia 'erick-portfolio' por un nombre único para ti
+        const ntfy = new NtfyNotifications('show-cv');
+    
         // Carousel functionality mejorado
         function changeSlide(button, direction) {
             const carousel = button.closest('.carousel');
@@ -552,6 +559,63 @@
             
             // Inicializar skeleton loader para imágenes del carousel
             initSkeletonLoader();
+            
+            // ============================================
+            // INTEGRACIÓN DE NOTIFICACIONES NTFY.SH
+            // ============================================
+
+            // 1. Notificar visita al portafolio (solo una vez por sesión)
+            if (!sessionStorage.getItem('visit_notified')) {
+                ntfy.notifyVisit();
+                sessionStorage.setItem('visit_notified', 'true');
+            }
+
+            // 2. Notificar descarga de CV
+            const downloadCVBtn = document.querySelector('.download-cv');
+            if (downloadCVBtn) {
+                downloadCVBtn.addEventListener('click', function(e) {
+                    ntfy.notifyDownloadCV();
+                    console.log('📄 Descarga de CV detectada');
+                });
+            }
+
+            // 3. Notificar clics en enlaces de contacto
+            const contactLinks = document.querySelectorAll('.contact-link');
+            contactLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    let method = 'unknown';
+                    
+                    if (href.includes('mailto:')) {
+                        method = 'email';
+                    } else if (href.includes('wa.me') || href.includes('whatsapp')) {
+                        method = 'whatsapp';
+                    } else if (href.includes('linkedin')) {
+                        method = 'linkedin';
+                    }
+                    
+                    ntfy.notifyContact(method);
+                    console.log(`📞 Contacto vía ${method} detectado`);
+                });
+            });
+
+            // 4. Notificar interacciones con proyectos (opcional - comentado por defecto)
+            // const workCards = document.querySelectorAll('.work-card');
+            // workCards.forEach(card => {
+            //     card.addEventListener('mouseenter', function() {
+            //         const projectName = this.querySelector('h3').textContent;
+            //         ntfy.notifyProjectView(projectName);
+            //     });
+            // });
+
+            // 5. Notificar cambios de sección (opcional - comentado por defecto)
+            // const navLinks = document.querySelectorAll('a[href^="#"]');
+            // navLinks.forEach(link => {
+            //     link.addEventListener('click', function() {
+            //         const section = this.getAttribute('href').replace('#', '');
+            //         ntfy.notifyNavigation(section);
+            //     });
+            // });
         });
 
         // Skeleton Loader para imágenes del carousel

@@ -77,18 +77,43 @@ class NtfyNotifications {
      * Notificar cuando alguien visita el portafolio
      */
     async notifyVisit() {
+        // Detectar dispositivo
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const deviceType = isMobile ? 'Movil' : 'Desktop';
+        
+        // Obtener navegador de forma más limpia
+        let browser = 'Desconocido';
+        const ua = navigator.userAgent;
+        if (ua.includes('Firefox')) browser = 'Firefox';
+        else if (ua.includes('Chrome') && !ua.includes('Edg')) browser = 'Chrome';
+        else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Safari';
+        else if (ua.includes('Edg')) browser = 'Edge';
+        
+        // Obtener referencia (de dónde viene)
+        const referrer = document.referrer ? new URL(document.referrer).hostname : 'Directo';
+        
         const message = `Nueva visita al portafolio
 
-Navegador: ${navigator.userAgent.split(' ').slice(-2).join(' ')}
+Dispositivo: ${deviceType}
+Navegador: ${browser}
 Plataforma: ${navigator.platform}
-Hora: ${new Date().toLocaleString('es-MX')}`;
+Referencia: ${referrer}
+URL: ${window.location.href}
+Hora: ${new Date().toLocaleString('es-MX', { 
+    weekday: 'short', 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+})}`;
 
         await this.send(
-            'Nueva Visita',
+            'Nueva Visita al Portfolio',
             message,
             {
                 priority: 'default',
-                tags: 'eyes,chart_with_upwards_trend',
+                tags: 'eyes,chart_with_upwards_trend,globe_with_meridians',
                 click: window.location.href
             }
         );

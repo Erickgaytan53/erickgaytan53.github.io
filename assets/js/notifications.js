@@ -17,6 +17,7 @@ class NtfyNotifications {
      */
     async send(title, message, options = {}) {
         try {
+            const url = `${this.server}/${this.topic}`;
             const headers = {
                 'Content-Type': 'text/plain',
                 'Title': title,
@@ -34,21 +35,40 @@ class NtfyNotifications {
                 headers['Click'] = options.click;
             }
 
-            const response = await fetch(`${this.server}/${this.topic}`, {
+            // Log detallado para debugging
+            console.log('📤 Enviando notificación a ntfy.sh:');
+            console.log('  URL:', url);
+            console.log('  Title:', title);
+            console.log('  Message:', message);
+            console.log('  Headers:', headers);
+
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: headers,
                 body: message
+            });
+
+            console.log('📥 Respuesta de ntfy.sh:', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok
             });
 
             if (response.ok) {
                 console.log('✅ Notificación enviada exitosamente');
                 return true;
             } else {
-                console.error('❌ Error al enviar notificación:', response.statusText);
+                const errorText = await response.text();
+                console.error('❌ Error al enviar notificación:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    body: errorText
+                });
                 return false;
             }
         } catch (error) {
             console.error('❌ Error en ntfy.sh:', error);
+            console.error('❌ Stack trace:', error.stack);
             return false;
         }
     }
@@ -57,15 +77,14 @@ class NtfyNotifications {
      * Notificar cuando alguien visita el portafolio
      */
     async notifyVisit() {
-        const message = `
-📊 Nueva visita al portafolio
-🌐 Navegador: ${navigator.userAgent.split(' ').slice(-2).join(' ')}
-📱 Plataforma: ${navigator.platform}
-⏰ Hora: ${new Date().toLocaleString('es-MX')}
-        `.trim();
+        const message = `Nueva visita al portafolio
+
+Navegador: ${navigator.userAgent.split(' ').slice(-2).join(' ')}
+Plataforma: ${navigator.platform}
+Hora: ${new Date().toLocaleString('es-MX')}`;
 
         await this.send(
-            '👀 Nueva Visita',
+            'Nueva Visita',
             message,
             {
                 priority: 'default',
@@ -79,14 +98,13 @@ class NtfyNotifications {
      * Notificar cuando alguien descarga el CV
      */
     async notifyDownloadCV() {
-        const message = `
-📄 ¡Alguien descargó tu CV!
-⏰ Hora: ${new Date().toLocaleString('es-MX')}
-🌐 Página: ${window.location.href}
-        `.trim();
+        const message = `Alguien descargo tu CV!
+
+Hora: ${new Date().toLocaleString('es-MX')}
+Pagina: ${window.location.href}`;
 
         await this.send(
-            '⬇️ Descarga de CV',
+            'Descarga de CV',
             message,
             {
                 priority: 'high',
@@ -101,20 +119,19 @@ class NtfyNotifications {
      * @param {string} method - Método de contacto (email, whatsapp, linkedin)
      */
     async notifyContact(method) {
-        const methodEmojis = {
-            'email': '📧',
-            'whatsapp': '💬',
-            'linkedin': '💼'
+        const methodNames = {
+            'email': 'Email',
+            'whatsapp': 'WhatsApp',
+            'linkedin': 'LinkedIn'
         };
 
-        const message = `
-${methodEmojis[method] || '📞'} Intento de contacto vía ${method}
-⏰ Hora: ${new Date().toLocaleString('es-MX')}
-🌐 Desde: ${window.location.href}
-        `.trim();
+        const message = `Intento de contacto via ${methodNames[method] || method}
+
+Hora: ${new Date().toLocaleString('es-MX')}
+Desde: ${window.location.href}`;
 
         await this.send(
-            `${methodEmojis[method]} Nuevo Contacto`,
+            `Nuevo Contacto - ${methodNames[method] || method}`,
             message,
             {
                 priority: 'high',
@@ -129,13 +146,12 @@ ${methodEmojis[method] || '📞'} Intento de contacto vía ${method}
      * @param {string} projectName - Nombre del proyecto
      */
     async notifyProjectView(projectName) {
-        const message = `
-🎯 Proyecto visualizado: ${projectName}
-⏰ Hora: ${new Date().toLocaleString('es-MX')}
-        `.trim();
+        const message = `Proyecto visualizado: ${projectName}
+
+Hora: ${new Date().toLocaleString('es-MX')}`;
 
         await this.send(
-            '👁️ Proyecto Visualizado',
+            'Proyecto Visualizado',
             message,
             {
                 priority: 'low',
@@ -150,13 +166,12 @@ ${methodEmojis[method] || '📞'} Intento de contacto vía ${method}
      * @param {string} section - Nombre de la sección
      */
     async notifyNavigation(section) {
-        const message = `
-🧭 Navegación a sección: ${section}
-⏰ Hora: ${new Date().toLocaleString('es-MX')}
-        `.trim();
+        const message = `Navegacion a seccion: ${section}
+
+Hora: ${new Date().toLocaleString('es-MX')}`;
 
         await this.send(
-            '📍 Navegación',
+            'Navegacion',
             message,
             {
                 priority: 'low',
